@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Card with Flip and Tilt Effect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(#38dbff, #417fd7, #b03ab2);
+      font-family: "Montserrat", sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#f0f, #f00, #00f);
+      backdrop-filter: blur(12px);
+      /* clip-path: circle(20% at 10% 10%); */
+    }
+
+   
+
+    .container {
+      width: 100vw;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      position: relative;
+      margin: auto;
+      width: 500px;
+      height: 300px;
+      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgba(233, 233, 233, 0.1));
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      border-left: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+
+    body {
+      background: #121212;
+      font-family: "Montserrat", sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 250px;
+      background: #2ea2fe;
+      filter: blur(80px);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card .front,
+    .card .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card .back {
+      transform: rotateY(180deg);
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+    }
+
+    .chip {
+      position: absolute;
+      top: 36%;
+      left: 10%;
+      width: 80px;
+      height: 80px;
+      background-image: url('image.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    h1 {
+    position: absolute;
+      margin: auto;
+      color: #fff;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+      font-size: 7rem;
+      font-weight: 500 700;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      z-index: -1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 14%;
+      left: 8%;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -1px;
+      background: -webkit-linear-gradient(rgba(255, 255, 255, 0.2), rgb(255, 255, 255, 0.9));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .name {
+      position: absolute;
+      top: 80%;
+      left: 8%;
+      font-weight: 300;
+      font-size: 1.2rem;
+      background: -webkit-linear-gradient(rgb(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .number {
+      position: absolute;
+      top: 65%;
+      left: 8%;
+      font-size: 1.6rem;
+      font-weight: 300;
+      background: -webkit-linear-gradient(rgb(255, 255, 255, 0.9), transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: "Roboto Mono", monospace;
+    }
+
+    .dolar {
+      position: absolute;
+      bottom: -22%;
+      left: 76%;
+      font-size: 10rem;
+      font-weight: 900;
+      background: -webkit-linear-gradient(rgb(255, 255, 255, 0.5) 10%, transparent 64%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .decoration {
+      position: absolute;
+      top: 12%;
+      left: 78%;
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: none;
+      color: #fff;
+      background: linear-gradient(to bottom right, orangered, hotpink);
+    }
+
+    .decoration:before {
+      content: "";
+      position: absolute;
+      padding: 15px;
+      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.5));
+      border-radius: 4px;
+      border-top: 1px solid rgba(255, 255, 255, 0.6);
+      border-left: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(255, 255, 255, 0.2);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card">
+      <div class="front">
+        <div class='logo'>GLASS CARD</div>
+        <div class="chip"></div>
+        <p class="number">5904 0000 2424 3333</p>
+        <p class="name">GUTU GALUPPO</p>
+        <div class='dolar'>&#36;</div>
+        <div class='decoration'></div>
+      </div>
+      <div class="back">
+        <p>Contact Information</p>
+        <ul>
+          <li><a href="https://github.com/GutuGaluppo" target='_blank'>Github</a></li>
+          <li><a href="https://www.linkedin.com/in/augusto-galuppo-b687b824/" target="_blank">Linkedin</a></li>
+          <li><a href="https://www.instagram.com/gutugaluppo/" target='_blank'>Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <footer></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+  <script>
+    const card = document.querySelector('.card');
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+
+    // Initialize tilt only if the card is not flipped
+    VanillaTilt.init(card, {
+      max: 10,        
+      speed: 500,     
+      perspective: 700, 
+      easing: "cubic-bezier(.03,.98,.52,.99)", 
+      scale: 1.05,    
+      transition: true, 
+    });
+  </script>
+</body>
+</html>
